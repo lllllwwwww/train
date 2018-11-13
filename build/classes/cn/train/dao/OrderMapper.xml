@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.train.dao.OrderMapper">
+    <insert id="insertOrder" parameterType="String">
+        insert into ordert(orderUserName,orderTrainNo,orderStartDate) values(#{userName},#{trainNo},#{startDate})
+    </insert>
+    <select id="selectAllOrder" parameterType="String" resultType="ShowOrder">
+        select o.orderStartDate,t.startDate,t.trainNo,t.start,t.arrive,p.name,t.price from ordert o,passenger p,ticket t 
+        where o.orderUserName=#{username} and o.orderUserName=p.userName and o.orderTrainNo=t.trainNo
+    </select>
+    <delete id="deleteOrder" parameterType="String">
+        delete from ordert where orderUserName=#{userName} and orderTrainNo=#{trainNo} and orderStartDate=#{startDate}
+    </delete>
+</mapper>

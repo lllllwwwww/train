@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.train.dao.PassengerMapper">
+    <insert id="insertPassenger" parameterType="Passenger">
+         insert into passenger(userName,password,name,cardType,cardNo,email,phone,passengerType) values(#{userName},
+         #{password},#{name},#{cardType},#{cardNo},#{email},#{phone},#{passengerType})
+    </insert>
+    <select id="selectNameAndPwd" parameterType="String" resultType="int">
+         select count(*) from passenger where userName=#{username} and password=#{password}
+    </select>
+    <select id="selectName" parameterType="String" resultType="Passenger">
+         select * from passenger where userName=#{username}
+    </select>
+    <update id="updpassenger" parameterType="String">
+         update passenger set name=#{name},cardNo=#{cardNo},email=#{email},phone=#{phone} where userName=#{userName}
+    </update>
+</mapper>
